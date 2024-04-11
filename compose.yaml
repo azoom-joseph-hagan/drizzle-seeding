@@ -1,0 +1,15 @@
+name: drizzle-seeding
+services:
+  mysql:
+    container_name: ${COMPOSE_PROJECT_NAME}_mysql
+    image: mysql:8
+    ports:
+      - 127.0.0.1:${DATABASE_PORT:-3306}:3306
+    environment:
+      MYSQL_DATABASE: ${DATABSE_NAME:-$COMPOSE_PROJECT_NAME}
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+    command: mysqld ${MYSQL_OPTIONS:---character-set-server=utf8mb4 --collation-server=utf8mb4_0900_as_ci --skip-log-bin --log-error-verbosity=1  --default-time-zone=Asia/Tokyo}
+    volumes:
+      - mysql-data:/var/lib/mysql
+volumes:
+  mysql-data:

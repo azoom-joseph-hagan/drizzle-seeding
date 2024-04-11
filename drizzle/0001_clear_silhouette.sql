@@ -1,0 +1,1 @@
+ALTER TABLE `user` MODIFY COLUMN `name` text NOT NULL;
